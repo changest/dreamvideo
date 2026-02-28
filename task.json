@@ -1,0 +1,227 @@
+{
+  "project": "文生视频工具 - DreamVideo",
+  "description": "支持自定义API接入的文生视频生成平台，采用魅族 Flyme 风格设计",
+  "style": {
+    "designSystem": "Meizu Flyme Style",
+    "colors": {
+      "primary": "#0085FA",
+      "primaryHover": "#0070D9",
+      "background": "#F5F6F7",
+      "surface": "#FFFFFF",
+      "text": "#333333",
+      "textSecondary": "#666666",
+      "border": "#E5E6E7",
+      "success": "#52C41A",
+      "warning": "#FAAD14",
+      "error": "#FF4D4F"
+    },
+    "typography": "PingFang SC, -apple-system, sans-serif",
+    "borderRadius": "12px",
+    "shadow": "0 2px 12px rgba(0,0,0,0.08)"
+  },
+  "tasks": [
+    {
+      "id": 1,
+      "title": "项目初始化与基础配置",
+      "description": "创建 Next.js 项目并配置魅族风格设计系统",
+      "steps": [
+        "创建 Next.js 15 + TypeScript + Tailwind CSS 项目",
+        "配置全局 CSS 变量和魅族配色方案",
+        "安装必要依赖: clsx, tailwind-merge, lucide-react, framer-motion",
+        "配置 tailwind.config.ts 添加魅族颜色和字体",
+        "创建全局布局组件 (魅族风格圆角卡片设计)",
+        "创建 lib/utils.ts (cn 函数)"
+      ],
+      "passes": true
+    },
+    {
+      "id": 2,
+      "title": "API 配置管理模块",
+      "description": "实现用户自定义 API 接入配置功能",
+      "steps": [
+        "创建 API 配置类型定义 (types/index.ts)",
+        "支持的视频 API 类型: 可灵、Runway、Pika、Luma 等",
+        "创建 API 配置存储层 (localStorage)",
+        "创建 API 配置表单组件",
+        "测试配置保存和读取"
+      ],
+      "passes": true
+    },
+    {
+      "id": 3,
+      "title": "魅族风格 UI 组件库",
+      "description": "创建一套魅族 Flyme 风格的 UI 组件",
+      "steps": [
+        "创建 Button 组件 (圆角12px, 渐变色, 微动效)",
+        "创建 Input/Textarea 组件 (底部边框风格)",
+        "创建 Card 组件 (白色卡片, 阴影, 圆角)",
+        "创建 Select/Dropdown 组件",
+        "创建 Modal/Dialog 组件 (底部滑出式)",
+        "创建 Toast 提示组件 (顶部轻提示)",
+        "创建 Slider 滑块组件 (视频长度调节)"
+      ],
+      "passes": true
+    },
+    {
+      "id": 4,
+      "title": "首页 - 魅族风格设计",
+      "description": "实现魅族风格的首页界面",
+      "steps": [
+        "创建 app/page.tsx 首页",
+        "魅族风格大标题和副标题",
+        "文生视频功能入口卡片 (简约图标+文字)",
+        "最近生成记录预览",
+        "底部快速开始按钮 (悬浮按钮风格)",
+        "API 配置入口 (设置图标)"
+      ],
+      "passes": true
+    },
+    {
+      "id": 5,
+      "title": "视频生成页面 - 输入区域",
+      "description": "实现文本输入和参数配置界面",
+      "steps": [
+        "创建 app/generate/page.tsx 生成页面",
+        "大文本输入框 (魅族便签风格, 简洁)",
+        "视频参数配置面板:",
+        "  - 视频比例 (16:9, 9:16, 1:1)",
+        "  - 视频时长 (5s/10s)",
+        "  - 分辨率选择",
+        "选择已配置的 API 服务商",
+        "生成按钮 (魅族蓝色渐变)"
+      ],
+      "passes": true
+    },
+    {
+      "id": 6,
+      "title": "视频生成 API 适配器",
+      "description": "创建通用 API 适配器支持多种视频生成服务",
+      "steps": [
+        "创建 lib/adapters/video-api.ts",
+        "定义通用视频生成接口",
+        "实现可灵 API 适配器",
+        "实现 Runway API 适配器",
+        "实现 Pika API 适配器",
+        "实现 Luma API 适配器",
+        "API 错误处理和重试机制"
+      ],
+      "passes": true
+    },
+    {
+      "id": 7,
+      "title": "视频生成页面 - 进度展示",
+      "description": "实现生成进度和结果展示",
+      "steps": [
+        "创建生成状态显示组件",
+        "进度条动画 (魅族蓝色)",
+        "生成步骤指示器:",
+        "  - 文本解析",
+        "  - 画面生成",
+        "  - 视频合成",
+        "  - 完成",
+        "视频预览播放器",
+        "下载和分享按钮"
+      ],
+      "passes": true
+    },
+    {
+      "id": 8,
+      "title": "历史记录页面",
+      "description": "实现视频生成历史记录",
+      "steps": [
+        "创建 app/history/page.tsx 历史页面",
+        "瀑布流/网格布局展示历史视频",
+        "视频卡片: 缩略图、提示词预览、生成时间",
+        "支持删除记录",
+        "支持重新生成 (使用相同参数)"
+      ],
+      "passes": true
+    },
+    {
+      "id": 9,
+      "title": "API 配置管理页面",
+      "description": "实现 API 配置的管理界面",
+      "steps": [
+        "创建 app/settings/api/page.tsx 配置页",
+        "已配置 API 列表 (卡片式)",
+        "添加新 API 按钮",
+        "API 配置编辑表单:",
+        "  - 服务商选择",
+        "  - API Key 输入 (密码框)",
+        "  - 模型选择 (如果有)",
+        "  - 测试连接按钮",
+        "删除 API 配置"
+      ],
+      "passes": true
+    },
+    {
+      "id": 10,
+      "title": "设置页面",
+      "description": "实现应用设置页面",
+      "steps": [
+        "创建 app/settings/page.tsx 设置页",
+        "魅族风格设置列表:",
+        "  - API 配置管理",
+        "  - 默认参数设置",
+        "  - 主题设置 (跟随系统/浅色/深色)",
+        "  - 清除缓存",
+        "  - 关于我们"
+      ],
+      "passes": true
+    },
+    {
+      "id": 11,
+      "title": "动画和交互优化",
+      "description": "添加魅族风格的流畅动画",
+      "steps": [
+        "页面切换动画 (淡入淡出)",
+        "卡片悬停动效 (轻微上浮)",
+        "按钮点击反馈 (缩放效果)",
+        "加载动画 (魅族圆环)",
+        "Toast 滑入滑出动画",
+        "使用 framer-motion 实现流畅过渡"
+      ],
+      "passes": true
+    },
+    {
+      "id": 12,
+      "title": "响应式设计",
+      "description": "适配移动端和桌面端",
+      "steps": [
+        "移动端优先的响应式布局",
+        "底部导航栏 (移动端)",
+        "侧边导航栏 (桌面端)",
+        "触摸友好的按钮尺寸",
+        "适配各种屏幕尺寸"
+      ],
+      "passes": true
+    },
+    {
+      "id": 13,
+      "title": "错误处理和边界",
+      "description": "完善错误处理机制",
+      "steps": [
+        "创建全局错误边界",
+        "API 错误友好提示",
+        "网络错误处理",
+        "404 页面 (魅族风格)",
+        "空状态页面设计"
+      ],
+      "passes": true
+    },
+    {
+      "id": 14,
+      "title": "最终测试和构建",
+      "description": "完整测试和构建部署",
+      "steps": [
+        "运行 npm run lint 检查代码",
+        "运行 npm run build 构建",
+        "测试各页面显示和交互",
+        "测试 API 配置流程",
+        "测试视频生成流程",
+        "验证魅族风格设计一致性"
+      ],
+      "passes": true
+    }
+  ]
+}

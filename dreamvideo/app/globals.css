@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  /* 魅族配色 */
+  --meizu-primary: #0085FA;
+  --meizu-primary-hover: #0070D9;
+  --meizu-background: #F5F6F7;
+  --meizu-surface: #FFFFFF;
+  --meizu-text: #333333;
+  --meizu-text-secondary: #666666;
+  --meizu-border: #E5E6E7;
+  --meizu-success: #52C41A;
+  --meizu-warning: #FAAD14;
+  --meizu-error: #FF4D4F;
+
+  /* 映射到 Tailwind */
+  --background: var(--meizu-background);
+  --foreground: var(--meizu-text);
+  --primary: var(--meizu-primary);
+  --primary-hover: var(--meizu-primary-hover);
+  --surface: var(--meizu-surface);
+  --border: var(--meizu-border);
+  --text-secondary: var(--meizu-text-secondary);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text-secondary: var(--text-secondary);
+  --font-sans: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 魅族风格滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+/* 选中文本样式 */
+::selection {
+  background: rgba(0, 133, 250, 0.2);
+}
+
+/* 魅族风格聚焦样式 */
+*:focus-visible {
+  outline: 2px solid var(--meizu-primary);
+  outline-offset: 2px;
+}
+
+/* 禁用按钮样式 */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 输入框 placeholder */
+::placeholder {
+  color: #999999;
+}
