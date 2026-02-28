@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 
 const aspectRatioOptions = [
   { value: "16:9", label: "16:9 横屏" },
@@ -34,37 +34,25 @@ const resolutionOptions = [
   { value: "1080p", label: "1080p" },
 ];
 
-// 订阅 localStorage 变化的 store
-const apiConfigsStore = {
-  subscribe: (callback: () => void) => {
-    const handleStorage = () => callback();
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
-  },
-  getSnapshot: () => getApiConfigs(),
-  getServerSnapshot: () => [],
-};
-
 export default function GeneratePage() {
   const router = useRouter();
   const [prompt, setPrompt] = useState("");
   const [aspectRatio, setAspectRatio] = useState("16:9");
   const [duration, setDuration] = useState("5");
   const [resolution, setResolution] = useState("720p");
-  const apiConfigs = useSyncExternalStore(
-    apiConfigsStore.subscribe,
-    apiConfigsStore.getSnapshot,
-    apiConfigsStore.getServerSnapshot
-  );
+  const [apiConfigs, setApiConfigs] = useState<ApiConfig[]>([]);
   const [selectedApiId, setSelectedApiId] = useState<string>("");
   const [isGenerating, setIsGenerating] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // 初始化选中的 API
-  useState(() => {
-    if (apiConfigs.length > 0 && !selectedApiId) {
-      setSelectedApiId(apiConfigs[0].id);
+  useEffect(() => {
+    setMounted(true);
+    const configs = getApiConfigs();
+    setApiConfigs(configs);
+    if (configs.length > 0) {
+      setSelectedApiId(configs[0].id);
     }
-  });
+  }, []);
 
   const handleGenerate = async () => {
     if (!prompt.trim() || !selectedApiId) return;
@@ -84,6 +72,32 @@ export default function GeneratePage() {
   };
 
   const hasNoApiConfig = apiConfigs.length === 0;
+
+  // 防止服务端渲染不匹配
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-[#F5F6F7]">
+        <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#E5E6E7]">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Link href="/">
+                <Button variant="ghost" size="sm" className="gap-2">
+                  <ArrowLeft className="w-4 h-4" />
+                  返回
+                </Button>
+              </Link>
+              <h1 className="text-lg font-semibold text-[#333333]">
+                创作视频
+              </h1>
+            </div>
+          </div>
+        </header>
+        <main className="max-w-4xl mx-auto px-4 py-8">
+          <div className="animate-pulse">加载中...</div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#F5F6F7]">

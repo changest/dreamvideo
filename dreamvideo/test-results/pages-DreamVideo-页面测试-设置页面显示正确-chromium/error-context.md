@@ -1,0 +1,52 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - link "返回" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - button "返回" [ref=e7]:
+            - img [ref=e8]
+            - text: 返回
+        - heading "设置" [level=1] [ref=e10]
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - heading "外观" [level=2] [ref=e13]
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - img [ref=e18]
+            - generic [ref=e24]:
+              - heading "主题" [level=3] [ref=e25]
+              - paragraph [ref=e26]: 选择应用主题
+          - generic [ref=e27]:
+            - button "浅色" [ref=e28]
+            - button "深色" [ref=e29]
+            - button "跟随系统" [ref=e30]
+      - generic [ref=e31]:
+        - heading "通用" [level=2] [ref=e32]
+        - generic [ref=e34]:
+          - link "API 配置管理 管理视频生成 API" [ref=e36] [cursor=pointer]:
+            - /url: /settings/api
+            - generic [ref=e37]:
+              - img [ref=e39]
+              - generic [ref=e43]:
+                - heading "API 配置管理" [level=3] [ref=e44]
+                - paragraph [ref=e45]: 管理视频生成 API
+            - img [ref=e46]
+          - button "清除缓存 清除历史记录和数据" [ref=e49]:
+            - generic [ref=e50]:
+              - img [ref=e52]
+              - generic [ref=e56]:
+                - heading "清除缓存" [level=3] [ref=e57]
+                - paragraph [ref=e58]: 清除历史记录和数据
+      - generic [ref=e59]:
+        - heading "关于" [level=2] [ref=e60]
+        - generic [ref=e61]:
+          - img [ref=e63]
+          - heading "DreamVideo" [level=2] [ref=e65]
+          - paragraph [ref=e66]: 支持自定义 API 的文生视频工具
+          - paragraph [ref=e67]: 版本 1.0.0
+  - alert [ref=e68]
+```
